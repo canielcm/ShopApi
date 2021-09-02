@@ -24,7 +24,7 @@ const getPurchases = async (req, res)=>{
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -41,13 +41,13 @@ const getPurchasesByCostumerId = async (req, res)=>{
             res.status(200).json(purchasesVec);
         }else{
             res.status(404).json({
-                messege: `no purchases for costumer with id ${id}`
+                message: `no purchases for costumer with id ${id}`
             })
         }
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -62,13 +62,13 @@ const getPurchasesById = async (req, res)=>{
             res.status(200).json(resultVec);
         }else{
             res.status(404).json({
-                messege: `no purchases for costumer with id ${id}`
+                message: `no purchases for costumer with id ${id}`
             })
         }
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -81,7 +81,7 @@ const updatePurchaseStatus = async (req, res)=>{
         const {processed} = req.body;
         const sql = await pool.query('UPDATE purchase SET processed=$1 WHERE idpurchase=$2',[processed, idpurchase]);
         res.status(200).json({
-            messege: "Status updated for purchase with id "+idpurchase,
+            message: "Status updated for purchase with id "+idpurchase,
             data: {
                 idpurchase,
                 processed
@@ -90,7 +90,7 @@ const updatePurchaseStatus = async (req, res)=>{
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -115,17 +115,17 @@ const makePurchase = async (req, res)=>{
             });
             await deleteCartfull(idcostumer);
             res.status(200).json({
-                messege: "purchase done"
+                message: "purchase done"
             })
         }else{
             res.status(200).json({
-                messege: "cart for this costumer is empty"
+                message: "cart for this costumer is empty"
             })
         }
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }

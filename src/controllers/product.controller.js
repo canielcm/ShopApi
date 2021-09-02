@@ -24,7 +24,7 @@ const getProducts = async (req, res)=>{
         res.status(200).json(result);
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -36,7 +36,7 @@ const getProductsData = async (req,res)=>{
         res.status(200).json(result);
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -61,7 +61,7 @@ const getProductsDataByCategory = async (req,res)=>{
         }
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -74,11 +74,11 @@ const getProductById = async(req, res)=>{
         if(result){
             res.status(200).json(result);
         }else{
-            res.status(200).json({messege: "product not found"});
+            res.status(200).json({message: "product not found"});
         }
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -92,7 +92,7 @@ const addProduct = async (req, res)=>{
         const idProduct = sql1.rows[0].idproduct;
         sql2 = await  pool.query("insert into productdata ( idproduct, idcategory, idprovider, price, urlimg) values ($1, $2, $3, $4, $5)",[idProduct, idcategory, idprovider, price, urlimg]);
         res.json({
-            messege: "user added",
+            message: "user added",
             data: {
                 idproduct: idProduct,
                 nameproduct,
@@ -106,7 +106,7 @@ const addProduct = async (req, res)=>{
         });
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -143,7 +143,7 @@ const updateProductById = async (req, res)=>{
         const sql= await pool.query('UPDATE product SET nameproduct = $1, amountproduct=$2, descriptionproduct=$3 WHERE idproduct=$4 ',[nameproduct, amountproduct, descriptionproduct, id])
         const sql2= await pool.query('UPDATE productData SET idcategory = $1, idprovider=$2, price=$3, urlimg=$4 WHERE idproduct=$5 ',[idcategory, idprovider, price,urlimg, id])
         res.status(200).json({
-            messege: "product updated",
+            message: "product updated",
             data: {
                 idproduct: id,
                 nameproduct,
@@ -157,7 +157,7 @@ const updateProductById = async (req, res)=>{
         })
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -184,16 +184,16 @@ const deleteProductById = async (req,res)=>{
         if(product){
             const sql = pool.query("DELETE FROM product WHERE idproduct=$1",[id]);
             res.json({
-                messege: "Product removed",
+                message: "Product removed",
             })
         }else{
             res.status(404).json({
-                messege: "product not found",
+                message: "product not found",
             })
         }
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }

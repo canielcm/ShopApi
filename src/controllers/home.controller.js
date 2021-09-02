@@ -26,13 +26,13 @@ const getHomeById = async (req, res)=>{
             res.status(200).json(result)
         }else{
             res.status(404).json({
-                messege: "Home not found"
+                message: "Home not found"
             })
         }
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -46,13 +46,13 @@ const getHomeByAddress = async (req,res)=>{
             res.status(200).json(result)
         }else{
             res.status(404).json({
-                messege: "Home not found"
+                message: "Home not found"
             })
         }
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -72,20 +72,20 @@ const addHome = async (req, res)=>{
                 homeValidation.descriptionhome=descriptionhome;
             }
             res.status(200).json({
-                messege: "home already exists",
+                message: "home already exists",
                 data: homeValidation
             })
         }else{
             const sql = await pool.query("INSERT INTO HOME (homeaddress, city, descriptionhome) VALUES ($1, $2, $3) RETURNING idhome, homeaddress, city, descriptionhome ", [homeaddress.toUpperCase(), city.toUpperCase(), descriptionhome])
             res.status(200).json({
-                messege: "home added",
+                message: "home added",
                 data: sql.rows[0]
             })
         }
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }

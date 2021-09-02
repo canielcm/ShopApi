@@ -17,7 +17,7 @@ const getCart = async (req, res)=>{
         res.status(200).json(result); 
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -39,7 +39,7 @@ const updateCartProduct = async (req, res)=>{
         console.log(sql);
 
         res.status(200).json({
-            messege: "cart updated",
+            message: "cart updated",
             data: {
                 idcostumer,
                 idproduct,
@@ -48,7 +48,7 @@ const updateCartProduct = async (req, res)=>{
         })
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -75,7 +75,7 @@ const addToCart = async (req, res)=>{
             const sql = await pool.query('UPDATE cart SET amount=$1 WHERE idcostumer=$2 AND idproduct=$3',[newAmount, idcostumer, idproduct]);
             console.log(sql)
             res.status(200).json({
-                messege: "product added",
+                message: "product added",
                 data: {
                     idcostumer,
                     idproduct,
@@ -93,7 +93,7 @@ const addToCart = async (req, res)=>{
             const sql = await pool.query("INSERT INTO cart (idcostumer, idproduct, amount) VALUES ($1, $2, $3)",[idcostumer, idproduct, productAmount]);
             console.log(sql);
             res.status(200).json({
-                messege: "product added",
+                message: "product added",
                 data: {
                     idcostumer,
                     idproduct,
@@ -104,7 +104,7 @@ const addToCart = async (req, res)=>{
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -119,18 +119,18 @@ const deleteCartProduct = async (req, res)=>{
             const sql = pool.query("DELETE FROM cart WHERE idcostumer=$1 AND idproduct=$2",[idcostumer, idproduct]);
             console.log(sql)
             res.status(200).json({
-                messege: "product removed to cart",
+                message: "product removed to cart",
             })
         }else{
             res.status(404).json({
-                messege: "product not found",
+                message: "product not found",
             })
         }
         
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }
@@ -151,13 +151,13 @@ const deleteCart = async (req, res)=>{
         const {idcostumer} = params;
         await deleteCartfull(idcostumer)
         res.status(200).json({
-            messege: "products removed to cart",
+            message: "products removed to cart",
         })
         
     } catch (error) {
         console.log(error)
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }

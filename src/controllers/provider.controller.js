@@ -19,7 +19,7 @@ const getproviders = async (req, res)=>{
     } catch (error) {
         console.log(error)
         res.status(400).json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         })
     }
@@ -34,12 +34,12 @@ const getproviderById=async (req, res)=>{
             console.log(await providerById(id));
         }else{
             res.status(404).json({
-                messege: "No provider found"
+                message: "No provider found"
             });
     }
     } catch (error) {
         res.status(400).json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         })
     }
@@ -52,7 +52,7 @@ const addProvider = async(req, res)=>{
         const sql = await pool.query("INSERT INTO providers (nameprovider, emailprovider, phonenumber) VALUES ($1, $2, $3) RETURNING idprovider", [nameprovider, emailprovider, phonenumber]);
         const idprovider = sql.rows[0].idprovider;
         res.status(200).json({
-            messege: "provider added",
+            message: "provider added",
             data: {
                 idprovider,
                 nameprovider, 
@@ -63,7 +63,7 @@ const addProvider = async(req, res)=>{
     } catch (error) {
         console.log(error)
         res.status(400).json({
-            messege: "there are trobles",
+            message: "there are trobles",
             error
         });
     }
@@ -88,7 +88,7 @@ const updateProviderById = async (req, res)=>{
         const {nameprovider, emailprovider, phonenumber} = body;
         const sql= await pool.query('UPDATE providers SET nameprovider = $1, emailprovider=$2, phonenumber=$3 WHERE idprovider=$4 ',[ nameprovider, emailprovider, phonenumber, id])
         res.status(200).json({
-            messege: "provider updated",
+            message: "provider updated",
             data: {
                 idprovider: id,
                 nameprovider,
@@ -99,7 +99,7 @@ const updateProviderById = async (req, res)=>{
     } catch (error) {
         console.log(error)
         res.status(400).json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         });
     }

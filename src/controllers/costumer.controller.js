@@ -19,7 +19,7 @@ const getCostumers = async (req, res)=>{
         console.log(await allCostumers());
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         })
     }
@@ -34,12 +34,12 @@ const getCostumerById=async (req, res)=>{
             console.log(await CostumerById(id));
         }else{
             res.status(404).json({
-                messege: "No user found"
+                message: "No user found"
             });
     }
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         })
     }
@@ -54,7 +54,7 @@ const addCostumer= async (req, res)=>{
         const idCostumer = sql1.rows[0].idcostumer;
         const sql2 = await pool.query("insert into costumerData (idCostumer, nameCostumer, phonenumberCostumer, passwordCostumer) values ($1, $2, $3, $4)",[idCostumer, namecostumer, phonenumbercostumer, cryptedPassword]);
         res.json({
-            messege: "user added",
+            message: "user added",
             data: {
                 idcostumer: idCostumer,
                 emailcostumer,
@@ -66,7 +66,7 @@ const addCostumer= async (req, res)=>{
         });
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         })
     }
@@ -103,7 +103,7 @@ const updateCostumerById = async(req, res)=>{
         }
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         })
     }
@@ -117,16 +117,16 @@ const deleteCostumerById = async (req, res)=>{
         if(user){
             const sql = pool.query("DELETE FROM costumer WHERE idcostumer=$1",[id]);
             res.json({
-                messege: "Costumer removed",
+                message: "Costumer removed",
             })
         }else{
             res.status(404).json({
-                messege: "Costumer not found",
+                message: "Costumer not found",
             })
         }
     } catch (error) {
         res.json({
-            messege: "There are troubles",
+            message: "There are troubles",
             error
         })
     }

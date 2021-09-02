@@ -6,6 +6,7 @@ const {getCart, addToCart, updateCartProduct, deleteCartProduct, deleteCart}= re
 const {makePurchase, getPurchasesById, getPurchases, getPurchasesByCostumerId, updatePurchaseStatus}= require('../controllers/purchase.controller');
 const {addHome, getHomeById, getHomeByAddress} = require('../controllers/home.controller');
 const {getproviders, getproviderById, updateProviderById, addProvider}= require('../controllers/provider.controller');
+const {getCategories,getCategoryById,getCategoryByName,addCategory,updateCategory,deleteCategory}=require('../controllers/category.controller');
 // costumer routes
 router.get('/costumers', getCostumers);
 router.get('/costumers/:id', getCostumerById);
@@ -48,4 +49,11 @@ router.get('/provider/:id', getproviderById);
 router.post('/provider', addProvider);
 router.put('/provider/:id', updateProviderById);
 
+// category routes
+router.get('/category', getCategories);
+router.get('/category/:id', getCategoryById);
+router.get('/category/name/:name', getCategoryByName);
+router.post('/category', addCategory);
+router.put('/category/:id', updateCategory);
+router.delete('/category/:id', deleteCategory);
 module.exports = router;
