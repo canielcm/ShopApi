@@ -4,7 +4,7 @@ This is an API for a Shop
   # costumer routes
 get('/costumers')
 get('/costumers/:id')
-post('/costumers') -> body: {"emailcostumer", "namecostumer", "phonenumbercostumer", "passwordcostumer"}
+```post('/costumers') -> body: {"emailcostumer", "namecostumer", "phonenumbercostumer", "passwordcostumer"}```
 put('/costumers/:id') -> body: {"namecostumer", "phonenumbercostumer"}
 delete('/costumers/:id')
 

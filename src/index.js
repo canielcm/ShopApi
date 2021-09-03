@@ -1,7 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
 const morgan = require('morgan');
+require ("dotenv").config();
+
+const app = express();
+const {pool} = require('./controllers/index.controller');
 const port = 4000;
 
 // middlewares
@@ -14,3 +17,8 @@ app.use(require('./routes/index'));
 
 app.listen(port);
 console.log("Server on port "+port);
+if(!pool){
+    console.log('bd error connect');
+}else{
+    console.log('database pg online');
+}
